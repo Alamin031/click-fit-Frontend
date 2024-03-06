@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Click Fit - Sport & Fitness</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+        color: #333;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      header {
+        background-color: #007bff;
+        color: #fff;
+        padding: 20px 0;
+        text-align: center;
+        animation: fadeInDown 1s ease-out;
+      }
+      footer {
+        background-color: #343a40;
+        color: #fff;
+        padding: 20px 0;
+        text-align: center;
+      }
+      .container {
+        max-width: 1200px;
+        margin: auto;
+        text-align: center;
+        padding: 20px;
+        position: relative;
+      }
+      h1 {
+        font-size: 36px;
+        margin-bottom: 30px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: white;
+      }
+      p {
+        font-size: 18px;
+        margin-top: 20px;
+      }
+      .dropzone {
+        border: 2px dashed #ccc;
+        padding: 20px;
+        text-align: center;
+        margin-top: 40px;
+        transition: border-color 0.3s ease-in-out;
+      }
+      .dropzone:hover {
+        border-color: #007bff;
+      }
+      .dropzone p {
+        font-size: 18px;
+        color: #888;
+      }
+      .fitness-section {
+        margin-top: 50px;
+      }
+      .fitness-image {
+        max-width: 100%;
+        border-radius: 10px;
+        margin-bottom: 20px;
+      }
+      #slideshow {
+        margin-top: 50px;
+        position: relative;
+        overflow: hidden;
+        border-radius: 10px;
+        border: 2px solid #007bff;
+        height: 300px; 
+        animation: fadeInUp 1s ease-out;
+      }
+
+      #slideshow img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: none;
+      }
+
+      #slideshow img.active {
+        display: block;
+        animation: slideInRight 1s ease-out;
+      }
+
+      .card {
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 20px;
+        transition: box-shadow 0.3s ease-in-out;
+        cursor: pointer;
+      }
+
+      .card:hover {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      @keyframes fadeInDown {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes slideInRight {
+        from {
+          opacity: 0;
+          transform: translateX(-100%);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+      .notice-board {
+        background-color: #f8f9fa;
+        border: 1px solid #ccc;
+        padding: 20px;
+        border-radius: 10px;
+        position: absolute;
+        margin-left: -50%;
+        animation: slideInRight 1s ease-out forwards;
+      }
+      .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+        transition: background-color 0.3s ease;
+      }
+      .btn-primary:hover {
+        background-color: #0056b3;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Click Fit - Sport & Fitness</h1>
+    </header>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="notice-board">
+            <h3>Notice Board</h3>
+            <ul id="noticeList">
+              <li>Important Announcement 1</li>
+              <li>Important Announcement 2</li>
+              <li>Important Announcement 3</li>
+              <li>Important Announcement 4</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-9">
+          <p id="apiData"></p>
+          <div id="dropzone" class="dropzone">
+            <p>Drag & Drop Images Here</p>
+            <input type="file" id="fileInput" accept="image/*" multiple />
+          </div>
+
+          <button id="uploadButton" class="btn btn-primary mt-3">Upload</button>
+          <div id="slideshow">
+            <img src="images/f1.jpg" class="active" />
+            <img src="images/f2.jpeg" />
+            <img src="images/f4.jpeg" />
+          </div>
+          <div class="fitness-section">
+            <h2>Fitness Activities</h2>
+            <p>
+              Get inspired by various fitness activities like running, cycling,
+              yoga, and more!
+            </p>
+            <img
+              src="images/f4.jpeg"
+              alt="Fitness Activities"
+              class="fitness-image"
+            />
+          </div>
+
+          <div class="fitness-section">
+            <h2>Fitness Tips</h2>
+            <p>
+              Explore helpful tips and tricks to improve your fitness journey
+              and achieve your goals.
+            </p>
+            <img
+              src="images/f4.jpeg"
+              alt="Fitness Tips"
+              class="fitness-image"
+            />
+          </div>
+
+          <div id="videoSection" class="fitness-section">
+            <h2>Fitness Video</h2>
+            <iframe
+              width="560"
+              height="315"
+              src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+              frameborder="0"
+              allowfullscreen
+            ></iframe>
+          </div>
+
+          <!-- Card Component -->
+          <div class="row">
+            <div class="col-md-4">
+              <div class="card" onclick="window.location.href = 'anotherpage.html';">
+                <h3>Card Title</h3>
+                <p>This is a simple card component. Click to go to another page.</p>
+              </div>
+            </div>
+          </div>
+          <!-- End Card Component -->
+
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>&copy; 2022 Click Fit - All Rights Reserved</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        // Add jQuery AJAX call to fetch data from API
+        $.ajax({
+          url: "http://numbersapi.com/1/30/date?json",
+          dataType: "json",
+          success: function (data) {
+            $("#apiData").text(data.text);
+          },
+          error: function (xhr, status, error) {
+            console.error("Error fetching API data:", error);
+          },
+        });
+
+        // Slideshow functionality
+        var slideIndex = 0;
+        showSlides();
+
+        function showSlides() {
+          var slides = $("#slideshow img");
+          for (var i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+          }
+          slideIndex++;
+          if (slideIndex > slides.length) {
+            slideIndex = 1;
+          }
+          slides[slideIndex - 1].style.display = "block";
+          setTimeout(showSlides, 3000);
+        }
+
+        // Handle file upload
+        $("#uploadButton").click(function () {
+          var files = $("#fileInput").prop("files");
+          handleFiles(files);
+        });
+
+        function handleFiles(files) {
+          var formData = new FormData();
+          for (var i = 0; i < files.length; i++) {
+            formData.append("images", files[i]);
+          }
+
+          $.ajax({
+            url: "/api/upload",
+            type: "POST",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (response) {
+              console.log(response.message);
+            },
+            error: function (xhr, status, error) {
+              console.error("Error uploading images:", error);
+            },
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
